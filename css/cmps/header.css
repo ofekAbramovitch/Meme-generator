@@ -15,13 +15,13 @@ header {
     z-index: 2;
 }
 
-.nav-bar li:not(:last-child) {
+.nav-bar li {
     font-weight: bold;
     cursor: pointer;
     padding: 5px 1.2rem;
 }
 
-.nav-bar li:hover:not(:last-child) {
+.nav-bar li:hover {
     background-color: rgba(255, 255, 255, 0.842);
     border-radius: 1.2rem;
     color: var(--clr0);
