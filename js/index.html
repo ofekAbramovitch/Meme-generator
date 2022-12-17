@@ -16,7 +16,7 @@
 
         <ul class="nav-bar flex">
             <li onclick="openGallery()" data-trans="gallery">Gallery</li>
-            <li onclick="initMyMemes()" data-trans="memes">My Memes</li>
+            <li><a href="myMemes2.html" data-trans="memes">My Memes</a></li>
         </ul>
         <button class="btn-menu" onclick="openMenu()">☰</button>
     </header>
@@ -87,6 +87,12 @@
                         <img class="icon" src="img/icons/align-to-right.png" alt=" ">
                     </button>
                 </div>
+                <!-- <div class="stickers">
+                    <img class="sticker" src="img/stickers/lonely.png" onclick="selectSticker(this)" alt="">
+                    <img class="sticker" src="img/stickers/patrick.png" onclick="selectSticker(this)" alt="">
+                    <img class="sticker" src="img/stickers/pikachu.png" onclick="selectSticker(this)" alt="">
+                    <img class="sticker" src="img/stickers/turtle.png" onclick="selectSticker(this)" alt="">
+                </div> -->
                 <div class="load-meme flex">
                     <button class="load save" onclick="saveMeme()" data-trans="save">Save</button>
                     <button class="load download"><a href="#" onclick="downloadMeme(this)" data-trans="download">
@@ -99,9 +105,12 @@
                 </div>
             </div>
         </div>
-    </main>
+    <!-- </main>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/meme.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/services/gallery.service.js"></script>
+    <script src="js/services/storage.service.js"></script> -->
     <script src="js/services/meme.service.js"></script>
     <script src="js/meme.controller.js"></script>
     <script src="js/services/storage.service.js"></script>

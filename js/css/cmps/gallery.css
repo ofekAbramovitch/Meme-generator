@@ -84,18 +84,6 @@
     gap: 0.3rem;
 }
 
-.keywords {
-    cursor: pointer;
-    margin-left: 20px;
-}
-
-.add-img {
-    width: 80px;
-    background: rgb(27, 115, 76);
-    color: rgb(255, 255, 255);
-    border: 2px solid black;
-} 
-
 @media(max-width:930px) {
     .search-img {
         grid-template-rows: 1fr 1fr;

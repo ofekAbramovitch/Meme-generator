@@ -11,26 +11,3 @@
 @import './cmps/header.css';
 @import './cmps/gallery.css';
 @import './cmps/editor.css';
-
-/* .keys {
-    cursor: pointer;
-    margin-left: 20px;
-} */
-
-/* .add-img {
-    width: 80px;
-    background: rgb(47, 0, 255);
-    color: rgb(255, 255, 255);
-    border: 2px solid black;
-    animation: doAdd 0.7s;
-    animation-iteration-count: infinite;
-} */
-
-/* @keyframes doAdd {
-    from {
-        border: 2px solid rgb(255, 255, 255);
-    }
-    to {
-        border: 2px solid rgba(238, 101, 101, 0.726);
-    }
-} */

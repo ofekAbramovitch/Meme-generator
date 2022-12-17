@@ -108,12 +108,3 @@ main {
         height: 25px;
     }
 }
-
-@keyframes doAdd {
-    from {
-        border: 2px solid rgb(255, 255, 255);
-    }
-    to {
-        border: 2px solid rgba(238, 101, 101, 0.726);
-    }
-}
