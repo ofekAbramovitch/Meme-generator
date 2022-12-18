@@ -15,7 +15,7 @@ function renderKeywords() {
 }
 
 function updateMeme(elImg) {
-    var elCanvas = getgElCanvas()
+    const elCanvas = getgElCanvas()
     setFontSize(elCanvas.width)
     gMeme = {
         selectedImgId: elImg.dataset.id,
@@ -45,7 +45,7 @@ function updateMeme(elImg) {
 function addMemeLine(isEmptyLines) {
     if (isEmptyLines) gIdLine = 0
     if (gMeme.lines.length === 1 && gMeme.lines[0].text === '') return
-    var elCanvas = getgElCanvas()
+    const elCanvas = getgElCanvas()
     var yPos = (gMeme.lines.length === 1) ? elCanvas.height - 20 : elCanvas.height / 2
     if (gMeme.lines.length === 0) yPos = 50
     gMeme.lines.push({
@@ -69,7 +69,7 @@ function addMemeLine(isEmptyLines) {
 }
 
 function addSticker(elSticker) {
-    var elCanvas = getgElCanvas()
+    const elCanvas = getgElCanvas()
     gMeme.lines.push({
         id: gIdLine++,
         text: '',
@@ -90,13 +90,13 @@ function addSticker(elSticker) {
 }
 
 function getPosXToWrite(lineIdx) {
-    var elCanvas = getgElCanvas()
-    var xPos
+    const elCanvas = getgElCanvas()
+    var xPos 
     switch (gMeme.lines[lineIdx].align) {
         case 'start':
             {
                 xPos = 50
-                break;
+                break
             }
         case 'center':
             {
@@ -144,7 +144,7 @@ function changeAlign(align) {
     if (gMeme.lines.length === 1 && gMeme.lines[0].text === '') return
     gMeme.lines[gMeme.selectedLineIdx].align = align
     if (align === 'end') { }
-    var posX = getPosXToWrite(gMeme.selectedLineIdx)
+    const posX = getPosXToWrite(gMeme.selectedLineIdx)
     gMeme.lines[gMeme.selectedLineIdx].x = posX
     renderCanvas()
     drawRect(gMeme.lines[gMeme.selectedLineIdx])
@@ -152,13 +152,13 @@ function changeAlign(align) {
 
 function changeColor() {
     if (gMeme.lines[gMeme.selectedLineIdx].isSticker) return
-    var elColor = document.querySelector('.color-input')
+    const elColor = document.querySelector('.color-input')
     elColor.click()
 }
 
 function ChangeStrokeColor() {
     if (gMeme.lines[gMeme.selectedLineIdx].isSticker) return
-    var elColor = document.querySelector('.color-input-stroke')
+    const elColor = document.querySelector('.color-input-stroke')
     elColor.click()
 }
 
@@ -171,15 +171,15 @@ function saveMeme() {
         numOfSaveImg++
     }
     renderCanvas()
-    var elCanvas = getgElCanvas()
-    var imgContent = elCanvas.toDataURL()
+    const elCanvas = getgElCanvas()
+    const imgContent = elCanvas.toDataURL()
     saveToStorage(`meme${numOfSaveImg}`, [gMeme, imgContent])
     saveToStorage('numOfSaveImg', numOfSaveImg)
 }
 
 function downloadMeme(elLink) {
     renderCanvas()
-    var elCanvas = getgElCanvas()
+    const elCanvas = getgElCanvas()
     const data = elCanvas.toDataURL()
     elLink.href = data
     elLink.download = 'Your Meme'

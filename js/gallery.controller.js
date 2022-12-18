@@ -7,15 +7,15 @@ function renderGallery(imgs = getImgs()) {
     imgs.forEach((img, idx) => {
         strHTML += `<img class="gallery-img" data-id="${idx}" src="${img.url}" alt="" onclick="renderMeme(this)">`
     })
-    var elImgs = document.querySelector('.imgs-container')
+    const elImgs = document.querySelector('.imgs-container')
     elImgs.innerHTML = strHTML
    
 }
 
 function renderSearches() {
     var strHTML = ''
-    var keywords = getKeywords()
-    var keyMap = getObjMapSearches()
+    const keywords = getKeywords()
+    const keyMap = getObjMapSearches()
     for (var i = gCurrSerachNum; i < gCurrSerachNum + 4; i++) {
         if (!keywords[i]) break
         var size = 16 + keyMap[keywords[i]] * 2 + 'px'
@@ -25,15 +25,15 @@ function renderSearches() {
 }
 
 function moreSearch() {
-    var keywords = getKeywords()
+    const keywords = getKeywords()
     gCurrSerachNum += 5
     if (gCurrSerachNum >= keywords.length) gCurrSerachNum = 0
     renderSearches()
 }
 
 function getObjMapSearches() {
-    var keyMap = {}
-    var imgs = getImgs()
+    const keyMap = {}
+    const imgs = getImgs()
     imgs.forEach(function(img) {
         var keywordsInImg = img.keywords
         keywordsInImg.forEach(function(key) {
@@ -49,8 +49,8 @@ function filterImg(elSearchWord) {
     else if (elSearchWord.value) elSearchWord = elSearchWord.value
     else elSearchWord = elSearchWord.dataset.value
     elSearchWord = elSearchWord.toLowerCase()
-    var imgs = getImgs()
-    var imgsToDisplay = imgs.filter(img =>
+    const imgs = getImgs()
+    const imgsToDisplay = imgs.filter(img =>
         img.keywords.find(key => key.toLowerCase().includes(elSearchWord))
     )
     renderGallery(imgsToDisplay)
@@ -61,9 +61,9 @@ function onImgInput(ev) {
 }
 
 function loadImageFromInput(ev, onImageReady) {
-    var reader = new FileReader()
+    const reader = new FileReader()
     reader.onload = function(event) {
-        var img = new Image()
+        const img = new Image()
         img.onload = onImageReady.bind(null, img)
         img.src = event.target.result
     }

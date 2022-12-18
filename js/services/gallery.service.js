@@ -3,12 +3,13 @@
 var gImgs
 var gIdLine
 var gIdImg
+var gImgSelect
 
-function _createImgs() {
+function createImgs() {
     gImgs = []
-    gImgs.push(_createImg(['Politics', 'Trump','Angry' ]))
+    gImgs.push(_createImg(['Politics', 'Trump', 'Angry']))
     gImgs.push(_createImg(['Pet', 'Dog', 'cute', 'Lick', 'Kiss']))
-    gImgs.push(_createImg(['Dog', 'Baby', 'Sleep','Bed']))
+    gImgs.push(_createImg(['Dog', 'Baby', 'Sleep', 'Bed']))
     gImgs.push(_createImg(['Cat', 'Sleep', 'Laptop']))
     gImgs.push(_createImg(['Baby', 'Happy', 'Beach']))
     gImgs.push(_createImg(['Movie', 'Explaining']))
@@ -35,15 +36,45 @@ function addImg(img) {
 }
 
 function openGallery() {
-    gIdLine = 0
     var elEditor = document.querySelector('.editor-container')
     elEditor.classList.add('hide')
-    var elEditor = document.querySelector('.gallery')
-    elEditor.classList.remove('hide')
+    var elGallery = document.querySelector('.gallery')
+    elGallery.classList.remove('hide')
     gMeme = null
     document.querySelector('.text-line').value = ''
 }
 
+function initMyMemes() {
+    var elEditor = document.querySelector('.editor-container')
+    elEditor.classList.add('hide')
+    var elGallery = document.querySelector('.gallery')
+    elGallery.classList.add('hide')
+    renderMyMemes()
+}
+
+function renderMyMemes() {
+    var strHtml = ''
+    for (var i = 1; i <= loadFromStorage('numOfSaveImg'); i++) {
+        var meme = loadFromStorage(`meme${i}`)
+        strHtml += `<img class="gallery-img" data-id="${i}" onclick="selectImg(this)" src="${meme[1]}" alt="">`
+    }
+    var elContainer = document.querySelector('.container-my-memes')
+    elContainer.innerHTML = strHtml
+}
+
+function selectImg(selectElImg) {
+    gImgSelect = selectElImg
+    const elImgs = document.querySelectorAll('.gallery-img')
+    elImgs.forEach(img => img.classList.remove('selected'))
+    selectElImg.classList.add('selected')
+  
+}
+
+function downloadMeme(elLink) {
+    if (!gImgSelect) return
+    elLink.href = gImgSelect.src
+    elLink.download = 'your Meme'
+}
 
 function getImgs() {
     return gImgs

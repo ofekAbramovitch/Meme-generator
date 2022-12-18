@@ -7,7 +7,7 @@ const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
     renderKeywords()
-    _createImgs()
+    createImgs()
     renderGallery()
     gElCanvas = document.querySelector('.canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -47,7 +47,7 @@ function resizeCanvas() {
 
 function renderCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-    var meme = getMeme()
+    const meme = getMeme()
     if (meme) renderMeme(meme.elImg)
 }
 
@@ -60,7 +60,7 @@ function renderMeme(elImg) {
     if (!meme || !meme.lines.length) {
         updateMeme(elImg)
         renderCanvas()
-        return;
+        return
     }
     meme.lines.forEach((line, idx) => writeText(idx, true))
 }
@@ -86,7 +86,7 @@ function onImgSelect(ev) {
 }
 
 function onDown(ev) {
-    var meme = getMeme()
+    const meme = getMeme()
     const pos = getEvPos(ev)
     var lineClick = islineClick(ev)
     if (isStickerInCanvas() && isCircleClicked(pos)) {
@@ -104,7 +104,6 @@ function onDown(ev) {
 function onUp(ev) {
     onImgSelect(ev)
     setLineDrag(false)
-    const pos = getEvPos(ev)
     if (isStickerInCanvas()) {
         setCircleDrag(false)
     }
@@ -115,7 +114,6 @@ function onMove(ev) {
     const memeLine = getMeme().lines[getMeme().selectedLineIdx];
     const pos = getEvPos(ev)
     if (isStickerInCanvas() && isCircleClicked(pos)) {
-        const circle = getCircle()
         var isCircleDrag = getIsCircleDrag()
         if (isCircleDrag) {
             const dx = pos.x - gStartPos.x
@@ -160,7 +158,7 @@ function selectSticker(elSticker) {
     document.querySelector('.text-line').value = ''
     addSticker(elSticker)
     renderCanvas()
-    var meme = getMeme()
+    const meme = getMeme()
     drawRect(meme.lines[meme.selectedLineIdx])
 }
 
@@ -181,7 +179,7 @@ function getEvPos(ev) {
 }
 
 function islineClick(ev) {
-    var meme = getMeme()
+    const meme = getMeme()
     var pos = {
         x: ev.offsetX,
         y: ev.offsetY
@@ -204,14 +202,14 @@ function islineClick(ev) {
 
 function writeText(lineIdx, isBackUpTexted = false) {
     setFontSize(gElCanvas.width)
-    var meme = getMeme()
-    var memeLine = meme.lines[lineIdx]
+    const meme = getMeme()
+    const memeLine = meme.lines[lineIdx]
     if (!isBackUpTexted) {
         renderCanvas()
         drawRect(memeLine)
     }
     if (memeLine.isSticker) {
-        var img = new Image()
+        const img = new Image()
         img.src = memeLine.img.src
         gCtx.drawImage(img, memeLine.x, memeLine.y, memeLine.sizeW, memeLine.sizeH)
     } else {
@@ -260,10 +258,10 @@ function addLine() {
 
 function deleteLine() {
     document.querySelector('.text-line').value = ''
-    var meme = getMeme()
+    const meme = getMeme()
     if (meme.lines.length === 1 && meme.lines[0].text === '') return
 
-    var currlineIdx = meme.selectedLineIdx
+    const currlineIdx = meme.selectedLineIdx
     meme.lines.splice(currlineIdx, 1)
     if (meme.lines.length) {
         renderCanvas()
@@ -282,9 +280,9 @@ function deleteLine() {
 }
 
 function moveLineUpOrDown(diff) {
-    var meme = getMeme()
+    const meme = getMeme()
     if (meme.lines.length === 1 && meme.lines[0].text === '') return
-    var lineNum = meme.selectedLineIdx
+    const lineNum = meme.selectedLineIdx
     var currLine = meme.lines[lineNum]
     currLine.y += diff
     currLine.rectSize.pos.y += diff
@@ -293,7 +291,7 @@ function moveLineUpOrDown(diff) {
 }
 
 function switchLine() {
-    var meme = getMeme()
+    const meme = getMeme()
     if ((meme.selectedLineIdx === 0)) meme.selectedLineIdx = meme.lines.length - 1
     else meme.selectedLineIdx--
     renderCanvas()
@@ -308,13 +306,13 @@ function changeSize(diff) {
 }
 
 function changeColor() {
-    var elColor = document.querySelector('.color-input')
+    const elColor = document.querySelector('.color-input')
     gMeme.lines[gMeme.selectedLineIdx].color = elColor.value
     renderCanvas()
 }
 
 function changeColorStroke() {
-    var elColor = document.querySelector('.color-input-stroke')
+    const elColor = document.querySelector('.color-input-stroke')
     gMeme.lines[gMeme.selectedLineIdx].colorStroke = elColor.value
     renderCanvas()
 }
