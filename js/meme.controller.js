@@ -320,8 +320,10 @@ function changeColorStroke() {
 function openEditor() {
     var elEditor = document.querySelector('.editor-container')
     elEditor.classList.remove('hide')
-    var elEditor = document.querySelector('.gallery')
-    elEditor.classList.add('hide')
+    var elGallery = document.querySelector('.gallery')
+    elGallery.classList.add('hide')
+    var elMyMemes = document.querySelector('.container-my-memes')
+    elMyMemes.classList.add('hide')
 }
 
 function getgElCanvas() {
